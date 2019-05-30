@@ -42,7 +42,7 @@ function showMessageFormIfViewingSelf() {
             loginStatus.username == parameterUsername) {
           const messageForm = document.getElementById('message-form');
           messageForm.classList.remove('hidden');
-	  document.getElementById('about-me-form').classList.remove('hidden');
+          document.getElementById('about-me-form').classList.remove('hidden');
         }
       });
 }
@@ -96,7 +96,7 @@ function fetchAboutMe(){
     return response.text();
   }).then((aboutMe) => {
     const aboutMeContainer = document.getElementById('about-me-container');
-    if(aboutMe == ''){
+    if (aboutMe == ''){
       aboutMe = 'This user has not entered any information yet.';
     }
     
