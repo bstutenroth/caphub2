@@ -53,32 +53,25 @@ public class Datastore {
    *     message. List is sorted by time descending.
    */
   public List<Message> getMessages(String user) {
-    List<Message> messages = new ArrayList<>();
-
     Query query =
         new Query("Message")
             .setFilter(new Query.FilterPredicate("user", FilterOperator.EQUAL, user))
             .addSort("timestamp", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
 
-    createMessage(results, messages);
-
-    return messages;
+    return createMessages(results);
   }
 
   public List<Message> getAllMessages() {
-    List<Message> messages = new ArrayList<>();
-
     Query query = new Query("Message")
       .addSort("timestamp",SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
 
-    createMessage(results, messages);
-
-    return messages;
+    return createMessages(results);
   }
 
-  private void createMessage(PreparedQuery pq, List<Message> m) {
+  private List<Message> createMessages(PreparedQuery pq) {
+    List<Message> messages = new ArrayList<>();
 
     for (Entity entity : pq.asIterable()) {
       try {
@@ -89,12 +82,14 @@ public class Datastore {
         long timestamp = (long) entity.getProperty("timestamp");
 
         Message message = new Message(id, user, text, timestamp);
-        m.add(message);
+        messages.add(message);
       } catch (Exception e) {
         System.err.println("Error reading message.");
         System.err.println(entity.toString());
         e.printStackTrace();
       }
     }
+
+    return messages;
   }
 }
