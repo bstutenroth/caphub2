@@ -96,7 +96,7 @@ function fetchAboutMe(){
     return response.text();
   }).then((aboutMe) => {
     const aboutMeContainer = document.getElementById('about-me-container');
-    if (aboutMe == ''){
+    if (aboutMe == '') {
       aboutMe = 'This user has not entered any information yet.';
     }
     
