@@ -24,8 +24,11 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
+
 
 /** Provides access to the data stored in Datastore. */
 public class Datastore {
@@ -53,18 +56,31 @@ public class Datastore {
    *     message. List is sorted by time descending.
    */
   public List<Message> getMessages(String user) {
-    List<Message> messages = new ArrayList<>();
-
     Query query =
         new Query("Message")
             .setFilter(new Query.FilterPredicate("user", FilterOperator.EQUAL, user))
             .addSort("timestamp", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
 
-    for (Entity entity : results.asIterable()) {
+    return createMessages(results);
+  }
+
+  public List<Message> getAllMessages() {
+    Query query = new Query("Message")
+      .addSort("timestamp",SortDirection.DESCENDING);
+    PreparedQuery results = datastore.prepare(query);
+
+    return createMessages(results);
+  }
+
+  private List<Message> createMessages(PreparedQuery pq) {
+    List<Message> messages = new ArrayList<>();
+
+    for (Entity entity : pq.asIterable()) {
       try {
         String idString = entity.getKey().getName();
         UUID id = UUID.fromString(idString);
+        String user = (String) entity.getProperty("user");
         String text = (String) entity.getProperty("text");
         long timestamp = (long) entity.getProperty("timestamp");
 
@@ -79,4 +95,42 @@ public class Datastore {
 
     return messages;
   }
+
+  public Set<String> getUsers(){
+    Set<String> users = new HashSet<>();
+    Query query = new Query("Message");
+    PreparedQuery results = datastore.prepare(query);
+    for (Entity entity : results.asIterable()) {
+      users.add((String) entity.getProperty("user"));
+    }
+    return users;
+  }
+  /** Stores the User in Datastore. */
+  public void storeUser(User user) {
+    Entity userEntity = new Entity("User", user.getEmail());
+    userEntity.setProperty("email", user.getEmail());
+    userEntity.setProperty("aboutMe", user.getAboutMe());
+    datastore.put(userEntity);
+  }
+ 
+  /**
+  * Returns the User owned by the email address, or
+  * null if no matching User was found.
+  */
+  public User getUser(String email) {
+ 
+    Query query = new Query("User")
+    .setFilter(new Query.FilterPredicate("email", FilterOperator.EQUAL, email));
+    PreparedQuery results = datastore.prepare(query);
+    Entity userEntity = results.asSingleEntity();
+    if (userEntity == null) {
+      return null;
+    } 
+  
+    String aboutMe = (String) userEntity.getProperty("aboutMe");
+    User user = new User(email, aboutMe);
+  
+    return user;
+  } 
+
 }
