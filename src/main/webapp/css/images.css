@@ -1,0 +1,13 @@
+/* Set the size of the message input to be 100 pixels high
+   and will fill the width of its parent element. */
+#message-input {
+  height: 100px;
+  width: 100%;
+}
+
+/* Set the images to fit the screen */
+.message-body img {
+  display: block;
+  margin-top: 25px;
+  max-width: 75%;
+}
