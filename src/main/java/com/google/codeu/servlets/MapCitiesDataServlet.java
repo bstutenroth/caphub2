@@ -3,12 +3,12 @@ package com.google.codeu.servlets;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 
+import java.io.IOException;
+import java.util.Scanner;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.Scanner;
 
 /**
  * Returns City data as a JSON array
@@ -19,6 +19,12 @@ public class MapCitiesDataServlet extends HttpServlet {
 
   private JsonArray popCityArray;
 
+  /**
+   * Reads each line of data at "/WEB-INF/popularCities.csv" and converts it to
+   * JSON, which is then added to an ArrayList
+   * used to get the latitude and longitude data for the markers on the map.
+   * Can see the JSON data at "/map-data" 
+   */
   @Override
   public void init() {
     popCityArray = new JsonArray();
