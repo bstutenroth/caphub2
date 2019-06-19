@@ -74,7 +74,7 @@ function buildInfoWindowInput(lat, lng) {
     postMarker(lat, lng, textBox.value);
     createMarkerForDisplay(lat, lng, textBox.value);
     editMarker.setMap(null);
-  }
+  };
   const containerDiv = document.createElement('div');
   containerDiv.appendChild(textBox);
   containerDiv.appendChild(document.createElement('br'));
