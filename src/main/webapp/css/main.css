@@ -15,18 +15,42 @@
  */
 
 /* Prevent the page from becoming too wide. */
-body {
-  max-width: 600px;
+#home_page{
+  background-color: orange;
+  margin-left: 20%;
+  margin-right: 20%;
+  position: fixed;
 }
-
-/* Remove bullet points from navigation bar. */
-nav ul {
-  list-style-type: none;
-  padding-left: 0;
+#home_title{
+  display: flex;
+  justify-content: center;
+  margin-top: 45%;
+  margin-left: 75%;
 }
-
-/* Keep navigation menu on one line. */
-nav li {
-  display: inline-block;
-  margin-right: 10px
+#title_name{
+  z-index: 1;
+  font-size: 500%;
+  margin-top: 8%;
+  font-family: Clicker Script;
+  white-space: nowrap;
+  font-weight: bold;
+}
+#page_options{
+  display: flex;
+  justify-content: center;
+  z-index: 5;
+  font-family: Amatic SC;
+  font-size: 200%;
+  display: flex;
+  margin-top: 90%;
+  margin-right:50%;
+  font-weight:100;
+  position:abstract;
+}
+#aboutLink{
+  margin-right: 20%;
+}
+#all_titles{
+  display: flex;
+  justify-content: center;
 }

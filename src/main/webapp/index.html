@@ -13,7 +13,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -22,20 +21,11 @@ limitations under the License.
     <link rel="stylesheet" href="/css/main.css">
     <script src="/js/navigation-loader.js"></script>
   </head>
-  <body onload="addLoginOrLogoutLinkToNavigation();">
-    <nav>
-      <ul id="navigation">
-        <li><a href="/">Home</a></li>
-        <li><a href="/aboutus.html">About Our Team</a></li>
-        <li><a href="/images.html">Images</a></li>
-        <li><a href="/how-to.html">How to style text</a></li>
-      </ul>
-    </nav>
-    <h1>CodeU Starter Project</h1>
-    <p>This is the CodeU starter project. Click the links above to login and visit your page.
-    You can post messages on your page, and you can visit other user pages if you have
-    their URL.</p>
-    <p>This is your code now! Feel free to make changes, and don't be afraid to get creative!
-    You could start by modifying this page to tell the world more about your team</p>
+  <body id = "home_page" onload="addLoginOrLogoutLinkToNavigation()">    
+    <div id = "home_title">
+      <div id = "title_name">Cap Hub <hr></div>
+        <h4 id = "aboutLink">Login</h4> <h4 id = "signUp">sign up</h4>
+    </div>
   </body>
 </html>
+
