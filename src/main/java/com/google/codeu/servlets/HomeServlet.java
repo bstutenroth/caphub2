@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  * but this is meant to demonstrate getting a Blobstore URL and using it in a form to allow
  * a user to upload a file.
  */
-@WebServlet("/home")
+@WebServlet("/imageUpload")
 public class HomeServlet extends HttpServlet {
 
   /**
