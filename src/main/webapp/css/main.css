@@ -1,56 +1,66 @@
-/*
- * Copyright 2019 Google Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-/* Prevent the page from becoming too wide. */
+@import "https://fonts.googleapis.com/css?family=Amatic+SC ";
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Six+Caps');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap');
 #home_page{
-  background-color: orange;
-  margin-left: 20%;
-  margin-right: 20%;
-  position: fixed;
-}
-#home_title{
-  display: flex;
-  justify-content: center;
-  margin-top: 45%;
-  margin-left: 75%;
+  background-color:white;
+  min-height: 100%;
+  min-width: 1024px;
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+  /* Set up positioning */
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 #title_name{
-  z-index: 1;
-  font-size: 500%;
-  margin-top: 8%;
-  font-family: Clicker Script;
-  white-space: nowrap;
+  font-size: 600%;
+  font-family: Montserrat;
   font-weight: bold;
+  width:100%;
+  height:auto;
+  left: 50%;
+  top:40%;
+  position:absolute;
 }
-#page_options{
-  display: flex;
-  justify-content: center;
-  z-index: 5;
+#logoPic{
+  width: 400px; 
+  height: 400px; 
+  left:10%;
+  top:25%;
+  position: absolute;
+}
+#logoPic2{
+  width: 275px;
+  height: 275px;
+  left:15%;
+  top:35%;
+  position: absolute;
+}
+#navigation{
+  position: absolute;
+  font-size:200%;
   font-family: Amatic SC;
-  font-size: 200%;
-  display: flex;
-  margin-top: 90%;
-  margin-right:50%;
-  font-weight:100;
-  position:abstract;
+  font-weight:bold;
+  left:85%;
+  top:0%;
+  border:1px;
+  border-style:solid;
+  text-align:center;
+  padding-left:1%;
+  padding-right:1%
 }
-#aboutLink{
-  margin-right: 20%;
+a{
+  color: black;
+  text-decoration: none;
+  font-family: Open Sans Condensed;
+  text-transform: uppercase;
 }
-#all_titles{
-  display: flex;
-  justify-content: center;
+#phrase{
+  left:47%;
+  top: 60%;
+  font-family: Open Sans Condensed;
+  position: absolute;
+  font-size:200%
 }
