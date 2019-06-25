@@ -24,17 +24,16 @@
     </style>
   </head>
   <body onload="fetchBlobstoreUrlAndShowForm()">
-    <h1>Upload Your Image to Cap Hub! </h1>
-    <p>Choose and upload an image, describe what the image is about,
-      and click submit!</p>
+    <h1>Blobstore Fetch Example</h1>
+    <p>Type a message and click submit:</p>
 
     <form id="my-form" class="hidden" method="POST" enctype="multipart/form-data">
-      <p>Upload your image to Cap Hub:</p>
-      <input type="file" name="image">
-      <br/><br/>
-      <p>Type image description:</p>
+      <p>Type some text:</p>
       <textarea name="message"></textarea>
       <br/>
+      <p>Upload an image:</p>
+      <input type="file" name="image">
+      <br/><br/>
       <button>Submit</button>
     </form>
   </body>
