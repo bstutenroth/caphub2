@@ -51,15 +51,32 @@
   padding-left:1%;
   padding-right:1%
 }
-a{
-  color: black;
-  text-decoration: none;
-  font-family: Open Sans Condensed;
-}
 #phrase{
   left:47%;
   top: 60%;
   font-family: Open Sans Condensed;
   position: absolute;
   font-size:200%
+}
+#nav1{
+  border:1px;
+  border-style:solid;
+  text-align:center;
+  padding-left:1%;
+  padding-right:1%;
+  color: black;
+  text-decoration: none;
+  font-family: Open Sans Condensed;
+  margin-right: 10%;
+}
+#nav2{
+  border:1px;
+  border-style:solid;
+  text-align:center;
+  padding-left:1%;
+  padding-right:1%;
+  color: black;
+  text-decoration: none;
+  font-family: Open Sans Condensed;
+  margin-right: 10%;
 }
