@@ -31,14 +31,14 @@ function addLoginOrLogoutLinkToNavigation() {
       })
       .then((loginStatus) => {
         if (loginStatus.isLoggedIn) {
-          navigationElement.appendChild(createListItem(createLink(
-              '/user-page.html?user=' + loginStatus.username, 'Your Page')));
+          navigationElement.appendChild(createLink(
+              '/user-page.html?user=' + loginStatus.username, 'Your Page'));
 
           navigationElement.appendChild(
-              createListItem(createLink('/logout', 'Logout')));
+              createLink('/logout', 'Logout'));
         } else {
           navigationElement.appendChild(
-              createListItem(createLink('/login', 'Login')));
+              createLink('/login', 'Login'));
         }
       });
 }
@@ -66,4 +66,3 @@ function createLink(url, text) {
   linkElement.href = url;
   return linkElement;
 }
-
