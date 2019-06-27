@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Blobstore Fetch Example</title>
+    <script>
+      function fetchBlobstoreUrlAndShowForm() {
+        fetch('/blobstore-upload-url')
+          .then((response) => {
+            return response.text();
+          })
+          .then((imageUploadUrl) => {
+            const messageForm = document.getElementById('my-form');
+            messageForm.action = imageUploadUrl;
+            messageForm.classList.remove('hidden');
+          });
+      }
+    </script>
+    <style>
+      /* Form is hidden by default. */
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body onload="fetchBlobstoreUrlAndShowForm()">
+    <h1>Upload Your Image to Cap Hub! </h1>
+    <p>Choose and upload an image, describe what the image is about,
+      and click submit!</p>
+
+    <form id="my-form" class="hidden" method="POST" enctype="multipart/form-data">
+      <p>Upload your image to Cap Hub:</p>
+      <input type="file" name="image">
+      <br/><br/>
+      <p>Type image description:</p>
+      <textarea name="message"></textarea>
+      <br/>
+      <button>Submit</button>
+    </form>
+  </body>
+</html>
