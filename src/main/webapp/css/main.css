@@ -38,19 +38,6 @@
   top:35%;
   position: absolute;
 }
-#navigation{
-  position: absolute;
-  font-size:200%;
-  font-family: Amatic SC;
-  font-weight:bold;
-  left:85%;
-  top:0%;
-  border:1px;
-  border-style:solid;
-  text-align:center;
-  padding-left:1%;
-  padding-right:1%
-}
 #phrase{
   left:47%;
   top: 60%;
@@ -58,7 +45,7 @@
   position: absolute;
   font-size:200%
 }
-#nav1{
+a{
   border:1px;
   border-style:solid;
   text-align:center;
@@ -67,16 +54,14 @@
   color: black;
   text-decoration: none;
   font-family: Open Sans Condensed;
-  margin-right: 10%;
+  margin-left: 10%;
 }
-#nav2{
-  border:1px;
-  border-style:solid;
-  text-align:center;
-  padding-left:1%;
-  padding-right:1%;
-  color: black;
-  text-decoration: none;
-  font-family: Open Sans Condensed;
-  margin-right: 10%;
+#navigation{
+  position: absolute;
+  font-size:200%;
+  font-family: Amatic SC;
+  font-weight:bold;
+  left:80%;
+  top:0%;
+
 }
