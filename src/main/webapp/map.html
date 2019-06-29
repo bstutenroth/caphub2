@@ -5,8 +5,8 @@
     <link rel = "stylesheet" href="/css/map.css">
     <script src="/js/map.js"></script>
     <title>Map Page</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEr8IFDb0oorKv9HmcL-XDPu62EAa8kRY&libraries=places&callback=initAutocomplete"
+        async defer></script>
   </head>
   <body onload="createMap();">
     <h1>Google Map API</h1>
@@ -18,7 +18,5 @@
          onFocus="geolocate()"
          type="text"/>
     </div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEr8IFDb0oorKv9HmcL-XDPu62EAa8kRY&libraries=places&callback=initAutocomplete"
-        async defer></script>
   </body>
   </html>
