@@ -8,15 +8,19 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEr8IFDb0oorKv9HmcL-XDPu62EAa8kRY&libraries=places&callback=initAutocomplete"
         async defer></script>
   </head>
-  <body onload="createMap();">
+  <!-- <body onload="createMap();"> -->
     <h1>Google Map API</h1>
-    <div id="map"></div>
-    <p>This page shows a Google Map using a fetch method to get data!</p>
+    <!-- <div id="map"></div> -->
+    <p>Enter the location of your photo below!</p>
+    <form id="my-form" class="hidden" method="POST" enctype="multipart/form-data">
+
     <div id="locationField">
-      <input id="autocomplete"
-         placeholder="Enter your address"
+      Location: <input id="autocomplete"
+         name="autocomplete"
          onFocus="geolocate()"
          type="text"/>
     </div>
+    <button>Submit</button>
+  </form>
   </body>
   </html>

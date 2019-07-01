@@ -3,25 +3,10 @@
   <head>
     <meta charset="UTF-8">
     <title>Blobstore Fetch Example</title>
-    <script>
-      function fetchBlobstoreUrlAndShowForm() {
-        fetch('/blobstore-upload-url')
-          .then((response) => {
-            return response.text();
-          })
-          .then((imageUploadUrl) => {
-            const messageForm = document.getElementById('my-form');
-            messageForm.action = imageUploadUrl;
-            messageForm.classList.remove('hidden');
-          });
-      }
-    </script>
-    <style>
-      /* Form is hidden by default. */
-      .hidden {
-        display: none;
-      }
-    </style>
+    <link rel = "stylesheet" href="/css/imageUpload.css">
+    <script src="/js/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEr8IFDb0oorKv9HmcL-XDPu62EAa8kRY&libraries=places&callback=initAutocomplete"
+        async defer></script>
   </head>
   <body onload="fetchBlobstoreUrlAndShowForm()">
     <h1>Upload Your Image to Cap Hub! </h1>
@@ -35,7 +20,17 @@
       <p>Type image description:</p>
       <textarea name="message"></textarea>
       <br/>
+      <p>Enter the location of the photo:<p>
+      <div id="locationField">
+          <input id="autocomplete"
+           name="location"
+           onFocus="geolocate()"
+           type="text">
+      </div>
+      <br/>
       <button>Submit</button>
     </form>
+
+
   </body>
 </html>

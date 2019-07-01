@@ -1,0 +1,21 @@
+/* Form is hidden by default. */
+.hidden {
+  display: none;
+}
+
+#locationField, #controls {
+  position: relative;
+  width: 480px;
+}
+
+#autocomplete {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 99%;
+}
+
+#locationField {
+  height: 20px;
+  margin-bottom: 2px;
+}
