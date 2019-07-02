@@ -3,7 +3,7 @@
   display: none;
 }
 
-#locationField, #controls {
+#controls {
   position: relative;
   width: 480px;
 }
@@ -18,4 +18,6 @@
 #locationField {
   height: 20px;
   margin-bottom: 2px;
+  position: relative;
+  width: 480px;
 }
