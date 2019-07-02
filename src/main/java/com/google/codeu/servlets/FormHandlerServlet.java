@@ -1,4 +1,4 @@
-package io.happycoding.servlets;
+package com.google.codeu.servlets;
 
 import com.google.appengine.api.blobstore.BlobInfo;
 import com.google.appengine.api.blobstore.BlobInfoFactory;
@@ -35,6 +35,9 @@ public class FormHandlerServlet extends HttpServlet {
     // Get the URL of the image that the user uploaded to Blobstore.
     String imageUrl = getUploadedFileUrl(request, "image");
 
+    // Get the location of the image the user inputs.
+    String location = request.getParameter("location");
+
     // Output some HTML that shows the data the user entered.
     // A real codebase would probably store these in Datastore.
     ServletOutputStream out = response.getOutputStream();
@@ -44,6 +47,8 @@ public class FormHandlerServlet extends HttpServlet {
     out.println("</a>");
     out.println("<p>Here's the text you entered:</p>");
     out.println(message);
+    out.println("<p>Here's the location you entered:</p>");
+    out.println(location);
   }
 
   /**
