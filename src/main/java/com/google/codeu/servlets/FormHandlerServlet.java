@@ -18,6 +18,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
+
 /**
  * When the user submits the form, Blobstore processes the file upload
  * and then forwards the request to this servlet. This servlet can then
@@ -25,6 +32,31 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/my-form-handler")
 public class FormHandlerServlet extends HttpServlet {
+
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    response.setContentType("text/html;");
+    ServletOutputStream out = response.getOutputStream();
+    out.println("<h1>Here is the post you uploaded</h1>");
+    out.println("<ul>");
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    Query query = new Query("imageURL").addSort("timestamp", SortDirection.DESCENDING);
+    PreparedQuery results = datastore.prepare(query);
+    for (Entity entity : results.asIterable()) {
+      String imageUrl = (String) entity.getProperty("image");
+      String message = (String) entity.getProperty("message");
+      String location = (String) entity.getProperty("location");
+
+
+      out.println("<img src=\"" + imageUrl + "\" />");
+      out.println("<p>" + message + "</p>");
+      out.println("<p>" + location + "</p>");
+    }
+
+    out.println("</ul>");
+
+  }
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -38,17 +70,15 @@ public class FormHandlerServlet extends HttpServlet {
     // Get the location of the image the user inputs.
     String location = request.getParameter("location");
 
-    // Output some HTML that shows the data the user entered.
-    // A real codebase would probably store these in Datastore.
-    ServletOutputStream out = response.getOutputStream();
-    out.println("<p>Here's the image you uploaded:</p>");
-    out.println("<a href=\"" + imageUrl + "\">");
-    out.println("<img src=\"" + imageUrl + "\" />");
-    out.println("</a>");
-    out.println("<p>Here's the text you entered:</p>");
-    out.println(message);
-    out.println("<p>Here's the location you entered:</p>");
-    out.println(location);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    Entity imageEntity = new Entity("imageURL");
+    imageEntity.setProperty("message", message);
+    imageEntity.setProperty("image", imageUrl);
+    imageEntity.setProperty("location", location);
+    imageEntity.setProperty("timestamp", System.currentTimeMillis());
+    datastore.put(imageEntity);
+
+    response.sendRedirect("/my-form-handler");
   }
 
   /**
