@@ -48,14 +48,12 @@ public class FormHandlerServlet extends HttpServlet {
       String message = (String) entity.getProperty("message");
       String location = (String) entity.getProperty("location");
 
-
       out.println("<img src=\"" + imageUrl + "\" />");
       out.println("<p>" + message + "</p>");
       out.println("<p>" + location + "</p>");
     }
 
     out.println("</ul>");
-
   }
 
   @Override
