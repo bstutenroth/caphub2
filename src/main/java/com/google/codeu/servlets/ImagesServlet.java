@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Whitelist;
+import java.io.IOException;
+import java.util.List;
 
 
 /**
@@ -33,6 +35,16 @@ import org.jsoup.safety.Whitelist;
    public void doGet(HttpServletRequest request, HttpServletResponse response)
       throws IOException {
       response.getOutputStream().println("this will be my images page");
+
+
+      /*response.setContentType("application/json");
+
+      List<Message> messages = datastore.getAllMessages();
+      Gson gson = new Gson();
+      String json = gson.toJson(messages);
+
+      response.getOutputStream().println(json);*/
+      
    }
 
 }
