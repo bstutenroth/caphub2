@@ -135,4 +135,58 @@ public class Datastore {
     return user;
   }
 
+  public void storeImageUrl (ImageUrl image) {
+    Entity imageEntity = new Entity("ImageUrl", image.getId().toString());
+    imageEntity.setProperty("user", image.getUser());
+    imageEntity.setProperty("message", image.getText());
+    imageEntity.setProperty("image", image.getUrl());
+    imageEntity.setProperty("location", image.getLocation());
+    imageEntity.setProperty("timestamp", image.getTimestamp());
+
+    datastore.put(imageEntity);
+  }
+
+  public List<ImageUrl> getImages(String user) {
+    Query query =
+        new Query("ImageUrl")
+            .setFilter(new Query.FilterPredicate("user", FilterOperator.EQUAL, user))
+            .addSort("timestamp", SortDirection.DESCENDING);
+    PreparedQuery results = datastore.prepare(query);
+
+    return createImageUrls(results);
+  }
+
+  public List<ImageUrl> getAllImages() {
+    Query query = new Query("ImageUrl")
+      .addSort("timestamp", SortDirection.DESCENDING);
+    PreparedQuery results = datastore.prepare(query);
+
+    return createImageUrls(results);
+  }
+
+  public List<ImageUrl> createImageUrls(PreparedQuery pq) {
+    List<ImageUrl> images = new ArrayList<>();
+
+    for (Entity entity: pq.asIterable()) {
+      try {
+        String idString = entity.getKey().getName();
+        UUID id = UUID.fromString(idString);
+        String user = (String) entity.getProperty("user");
+        String imageUrl = (String) entity.getProperty("image");
+        String message = (String) entity.getProperty("message");
+        String location = (String) entity.getProperty("location");
+        long timestamp = (long) entity.getProperty("timestamp");
+
+        ImageUrl image = new ImageUrl(id, user, imageUrl, message, location, timestamp);
+        images.add(image);
+      } catch (Exception e) {
+        System.err.println("Error reading message.");
+        System.err.println(entity.toString());
+        e.printStackTrace();
+      }
+    }
+
+    return images;
+  }
+
 }
