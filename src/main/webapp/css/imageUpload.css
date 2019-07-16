@@ -1,0 +1,51 @@
+/* Form is hidden by default. */
+.hidden {
+  display: none;
+}
+
+#controls {
+  position: relative;
+  width: 480px;
+}
+
+#autocomplete {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 99%;
+}
+
+#locationField {
+  height: 20px;
+  margin-bottom: 2px;
+  position: relative;
+  width: 480px;
+}
+
+.message-div {
+  border: thin solid black;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+/* Add a bottom border to the message header. */
+.message-header {
+  border-bottom: thin solid black;
+  padding: 5px;
+}
+
+/* Give the message body a margin so the text
+   isn't too close to the border. */
+.message-body {
+  border-bottom: thin solid black;
+  margin: 5px;
+}
+
+.location-body {
+  border-bottom: thin solid black;
+  margin: 5px;
+}
+
+.image-body {
+  margin: 5px;
+}

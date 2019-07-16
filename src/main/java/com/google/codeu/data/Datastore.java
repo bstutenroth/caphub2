@@ -16,6 +16,8 @@
 
 package com.google.codeu.data;
 
+import com.google.appengine.api.blobstore.BlobstoreService;
+import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -112,25 +114,79 @@ public class Datastore {
     userEntity.setProperty("aboutMe", user.getAboutMe());
     datastore.put(userEntity);
   }
- 
+
   /**
   * Returns the User owned by the email address, or
   * null if no matching User was found.
   */
   public User getUser(String email) {
- 
+
     Query query = new Query("User")
     .setFilter(new Query.FilterPredicate("email", FilterOperator.EQUAL, email));
     PreparedQuery results = datastore.prepare(query);
     Entity userEntity = results.asSingleEntity();
     if (userEntity == null) {
       return null;
-    } 
-  
+    }
+
     String aboutMe = (String) userEntity.getProperty("aboutMe");
     User user = new User(email, aboutMe);
-  
+
     return user;
-  } 
+  }
+
+  public void storeImageUrl (ImageUrl image) {
+    Entity imageEntity = new Entity("ImageUrl", image.getId().toString());
+    imageEntity.setProperty("user", image.getUser());
+    imageEntity.setProperty("message", image.getText());
+    imageEntity.setProperty("image", image.getUrl());
+    imageEntity.setProperty("location", image.getLocation());
+    imageEntity.setProperty("timestamp", image.getTimestamp());
+
+    datastore.put(imageEntity);
+  }
+
+  public List<ImageUrl> getImages(String user) {
+    Query query =
+        new Query("ImageUrl")
+            .setFilter(new Query.FilterPredicate("user", FilterOperator.EQUAL, user))
+            .addSort("timestamp", SortDirection.DESCENDING);
+    PreparedQuery results = datastore.prepare(query);
+
+    return createImageUrls(results);
+  }
+
+  public List<ImageUrl> getAllImages() {
+    Query query = new Query("ImageUrl")
+      .addSort("timestamp", SortDirection.DESCENDING);
+    PreparedQuery results = datastore.prepare(query);
+
+    return createImageUrls(results);
+  }
+
+  public List<ImageUrl> createImageUrls(PreparedQuery pq) {
+    List<ImageUrl> images = new ArrayList<>();
+
+    for (Entity entity: pq.asIterable()) {
+      try {
+        String idString = entity.getKey().getName();
+        UUID id = UUID.fromString(idString);
+        String user = (String) entity.getProperty("user");
+        String imageUrl = (String) entity.getProperty("image");
+        String message = (String) entity.getProperty("message");
+        String location = (String) entity.getProperty("location");
+        long timestamp = (long) entity.getProperty("timestamp");
+
+        ImageUrl image = new ImageUrl(id, user, imageUrl, message, location, timestamp);
+        images.add(image);
+      } catch (Exception e) {
+        System.err.println("Error reading message.");
+        System.err.println(entity.toString());
+        e.printStackTrace();
+      }
+    }
+
+    return images;
+  }
 
 }
