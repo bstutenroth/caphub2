@@ -13,60 +13,6 @@ function fetchBlobstoreUrlAndShowForm() {
     });
 }
 
-/** Fetches messages and add them to the page. */
-function fetchImages() {
-  const url = '/my-form-handler';
-  fetch(url)
-      .then((response) => {
-        return response.json();
-      })
-      .then((images) => {
-        const imagesContainer = document.getElementById('images-container');
-        if (images.length == 0) {
-          imagesContainer.innerHTML = '<p>This user has no posts yet.</p>';
-        } else {
-          imagesContainer.innerHTML = '';
-        }
-        images.forEach((image) => {
-          const imageDiv = buildImageDiv(image);
-          imagesContainer.appendChild(imageDiv);
-        });
-      });
-}
-
-/**
- * Builds an element that displays the message.
- * @param {ImageUrl} image
- * @return {Element}
- */
-function buildImageDiv(image) {
-  const headerDiv = document.createElement('div');
-  headerDiv.classList.add('message-header');
-  headerDiv.appendChild(document.createTextNode(
-      image.user + ' - ' + new Date(image.timestamp)));
-
-  const bodyDiv = document.createElement('div');
-  bodyDiv.classList.add('message-body');
-  bodyDiv.innerHTML = image.text;
-
-  const locationDiv = document.createElement('div');
-  locationDiv.classList.add('location-body');
-  locationDiv.innerHTML = image.location;
-
-  const imageDiv = document.createElement("div");
-  imageDiv.classList.add('image-body');
-  imageDiv.innerHTML = "<img src=\"" + image.url + "\" />";
-
-  const messageDiv = document.createElement('div');
-  messageDiv.classList.add('message-div');
-  messageDiv.appendChild(headerDiv);
-  messageDiv.appendChild(bodyDiv);
-  messageDiv.appendChild(locationDiv);
-  messageDiv.appendChild(imageDiv);
-
-  return messageDiv;
-}
-
 function initAutocomplete() {
   // Create the autocomplete object, restricting the search predictions to
   // geographical location types.
@@ -92,7 +38,6 @@ function geolocate() {
 
 function buildUI() {
   fetchBlobstoreUrlAndShowForm();
-  fetchImages();
   initAutocomplete();
   geolocate();
 
