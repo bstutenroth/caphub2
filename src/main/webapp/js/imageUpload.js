@@ -35,3 +35,10 @@ function geolocate() {
     });
   }
 }
+
+function buildUI() {
+  fetchBlobstoreUrlAndShowForm();
+  initAutocomplete();
+  geolocate();
+
+}
