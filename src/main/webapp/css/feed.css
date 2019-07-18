@@ -16,35 +16,21 @@ html, body {margin: 0; height: 100%; overflow: hidden}
   left: 0;
 }
 #title_name{
-  font-size: 600%;
+  font-size: 250%;
   font-family: Montserrat;
   font-weight: bold;
   width:100%;
   height:auto;
-  left: 50%;
-  top:40%;
+  left: 44%;
+  top:3%;
   position:absolute;
 }
 #logoPic{
-  width: 400px; 
-  height: 400px; 
-  left:10%;
-  top:25%;
+  width: 80px;
+  height: 80px;
+  left:18%;
+  top:.5%;
   position: absolute;
-}
-#logoPic2{
-  width: 275px;
-  height: 275px;
-  left:15%;
-  top:35%;
-  position: absolute;
-}
-#phrase{
-  left:47%;
-  top: 60%;
-  font-family: Open Sans Condensed;
-  position: absolute;
-  font-size:200%
 }
 a{
   border:1px;
@@ -59,10 +45,18 @@ a{
 }
 #navigation{
   position: absolute;
-  font-size:200%;
+  font-size:150%;
   font-family: Amatic SC;
   font-weight:bold;
   left:70%;
   top:0%;
 
+}
+#line{
+  margin-top: 6%;
+}
+p{
+  top: 10%;
+  font-size: 300%;
+  margin-left: 33%;
 }
