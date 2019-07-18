@@ -1,4 +1,4 @@
-package io.happycoding.servlets;
+package com.google.codeu.servlets;
 
 import com.google.appengine.api.blobstore.BlobInfo;
 import com.google.appengine.api.blobstore.BlobInfoFactory;
@@ -8,6 +8,9 @@ import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import com.google.appengine.api.images.ImagesService;
 import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.images.ServingUrlOptions;
+import com.google.codeu.data.Datastore;
+import com.google.codeu.data.ImageUrl;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.List;
 
@@ -18,6 +21,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
+
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
+
 /**
  * When the user submits the form, Blobstore processes the file upload
  * and then forwards the request to this servlet. This servlet can then
@@ -26,24 +35,54 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/my-form-handler")
 public class FormHandlerServlet extends HttpServlet {
 
+  private Datastore datastore;
+
+  @Override
+  public void init() {
+    datastore = new Datastore();
+  }
+
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    response.setContentType("application/json");
+    String user = request.getParameter("user");
+
+    //
+    // if (user == null || user.equals("")) {
+    //   // Request is invalid, return empty array
+    //   response.getWriter().println("[]");
+    //   return;
+    // }
+
+    List<ImageUrl> images = datastore.getAllImages();
+    Gson gson = new Gson();
+    String json = gson.toJson(images);
+
+    response.getWriter().println(json);
+  }
+
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
     // Get the message entered by the user.
-    String message = request.getParameter("message");
+    String message = Jsoup.clean(request.getParameter("message"), Whitelist.none());
 
     // Get the URL of the image that the user uploaded to Blobstore.
     String imageUrl = getUploadedFileUrl(request, "image");
 
-    // Output some HTML that shows the data the user entered.
-    // A real codebase would probably store these in Datastore.
-    ServletOutputStream out = response.getOutputStream();
-    out.println("<p>Here's the image you uploaded:</p>");
-    out.println("<a href=\"" + imageUrl + "\">");
-    out.println("<img src=\"" + imageUrl + "\" />");
-    out.println("</a>");
-    out.println("<p>Here's the text you entered:</p>");
-    out.println(message);
+    // Get the location of the image the user inputs.
+    String location = request.getParameter("location");
+
+    UserService userService = UserServiceFactory.getUserService();
+    if (!userService.isUserLoggedIn()) {
+      response.sendRedirect("/index.html");
+      return;
+    }
+    String user = userService.getCurrentUser().getEmail();
+    ImageUrl image = new ImageUrl(user, imageUrl, message, location);
+    datastore.storeImageUrl(image);
+    //response.sendRedirect("/comments.html?user=" + user);
+    response.sendRedirect("/feed.html");
   }
 
   /**
@@ -75,6 +114,7 @@ public class FormHandlerServlet extends HttpServlet {
     // Use ImagesService to get a URL that points to the uploaded file.
     ImagesService imagesService = ImagesServiceFactory.getImagesService();
     ServingUrlOptions options = ServingUrlOptions.Builder.withBlobKey(blobKey);
+
     return imagesService.getServingUrl(options);
   }
 }
