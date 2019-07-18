@@ -71,13 +71,12 @@ public class MessageServlet extends HttpServlet {
 
     UserService userService = UserServiceFactory.getUserService();
     if (!userService.isUserLoggedIn()) {
-      response.sendRedirect("/homepage.html");
+      response.sendRedirect("/index.html");
       return;
     }
 
     String user = userService.getCurrentUser().getEmail();
     String userText = Jsoup.clean(request.getParameter("text"), Whitelist.none());
-
 
     String regex = "(https?://\\S+\\.(png|jpg))";
     String replacement = "<img src=\"$1\" />";
@@ -86,6 +85,6 @@ public class MessageServlet extends HttpServlet {
     Message message = new Message(user, textWithImagesReplaced);
     datastore.storeMessage(message);
 
-    response.sendRedirect("/index.html?user=" + user);
+    response.sendRedirect("/user-page.html?user=" + user);
   }
 }
