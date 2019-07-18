@@ -45,14 +45,6 @@ public class FormHandlerServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json");
-    String user = request.getParameter("user");
-
-    //
-    // if (user == null || user.equals("")) {
-    //   // Request is invalid, return empty array
-    //   response.getWriter().println("[]");
-    //   return;
-    // }
 
     List<ImageUrl> images = datastore.getAllImages();
     Gson gson = new Gson();
@@ -81,7 +73,7 @@ public class FormHandlerServlet extends HttpServlet {
     String user = userService.getCurrentUser().getEmail();
     ImageUrl image = new ImageUrl(user, imageUrl, message, location);
     datastore.storeImageUrl(image);
-    //response.sendRedirect("/comments.html?user=" + user);
+
     response.sendRedirect("/feed.html");
   }
 

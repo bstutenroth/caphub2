@@ -189,4 +189,45 @@ public class Datastore {
     return images;
   }
 
+  public void storeUserCaption (UserCaption caption) {
+    Entity captionEntity = new Entity("UserCaption", caption.getCaptionId().toString());
+    captionEntity.setProperty("imageId", caption.getImageId());
+    captionEntity.setProperty("user", caption.getUser());
+    captionEntity.setProperty("text", caption.getText());
+    captionEntity.setProperty("timestamp", caption.getTimestamp());
+
+    datastore.put(captionEntity);
+  }
+
+  public List<UserCaption> getAllCaptions() {
+    Query query = new Query("UserCaption")
+      .addSort("timestamp", SortDirection.DESCENDING);
+    PreparedQuery results = datastore.prepare(query);
+
+    return createUserCaptions(results);
+  }
+
+  public List<UserCaption> createUserCaptions(PreparedQuery pq) {
+    List<UserCaption> captions = new ArrayList<>();
+
+    for (Entity entity : pq.asIterable()) {
+      try {
+        String idString = entity.getKey().getName();
+        UUID userId = UUID.fromString(idString);
+        String imageId = (String) entity.getProperty("imageId");
+        String user = (String) entity.getProperty("user");
+        String text = (String) entity.getProperty("text");
+        long timestamp = (long) entity.getProperty("timestamp");
+
+        UserCaption caption = new UserCaption(userId, imageId, user, text, timestamp);
+        captions.add(caption);
+      } catch (Exception e) {
+        System.err.println("Error reading message.");
+        System.err.println(entity.toString());
+        e.printStackTrace();
+      }
+    }
+    return captions;
+  }
+
 }
