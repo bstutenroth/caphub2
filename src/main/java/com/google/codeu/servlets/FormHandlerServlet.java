@@ -81,7 +81,7 @@ public class FormHandlerServlet extends HttpServlet {
     String user = userService.getCurrentUser().getEmail();
     ImageUrl image = new ImageUrl(user, imageUrl, message, location);
     datastore.storeImageUrl(image);
-    //response.sendRedirect("/comments.html?user=" + user);
+
     response.sendRedirect("/feed.html");
   }
 

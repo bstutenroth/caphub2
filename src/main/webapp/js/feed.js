@@ -1,48 +1,3 @@
-// Fetch messages and add them to the page.
-function fetchMessages() {
-  const url = "/feed";
-  fetch(url).then((response) => {
-    return response.json();
-  }).then((messages) => {
-    const messageContainer = document.getElementById('message-container');
-    if (messages.length == 0) {
-      messageContainer.innerHTML = '<p>There are no posts yet.</p>';
-    } else {
-      messageContainer.innerHTML = '';
-    }
-    messages.forEach((message) => {
-      const messageDiv = buildMessageDiv(message);
-      messageContainer.appendChild(messageDiv);
-    });
-  });
-}
-
-function buildMessageDiv(message) {
-  const usernameDiv = document.createElement('div');
-  usernameDiv.classList.add("left-align");
-  usernameDiv.appendChild(document.createTextNode(message.user));
-
-  const timeDiv = document.createElement('div');
-  timeDiv.classList.add('right-align');
-  timeDiv.appendChild(document.createTextNode(new Date(message.timestamp)));
-
-  const headerDiv = document.createElement('div');
-  headerDiv.classList.add('message-header');
-  headerDiv.appendChild(usernameDiv);
-  headerDiv.appendChild(timeDiv);
-
-  const bodyDiv = document.createElement('div');
-  bodyDiv.classList.add('message-body');
-  bodyDiv.appendChild(document.createTextNode(message.text));
-
-  const messageDiv = document.createElement('div');
-  messageDiv.classList.add("message-div");
-  messageDiv.appendChild(headerDiv);
-  messageDiv.appendChild(bodyDiv);
-
-  return messageDiv;
-}
-
 /** Fetches messages and add them to the page. */
 function fetchImages() {
   const url = '/my-form-handler';
@@ -59,6 +14,39 @@ function fetchImages() {
         }
         images.forEach((image) => {
           const imageDiv = buildImageDiv(image);
+          let userForm = document.createElement("form");
+          userForm.setAttribute('method', 'POST');
+          userForm.setAttribute('action', '/userCaptions');
+          userForm.setAttribute('id', 'userCommentForm');
+
+          let caption = document.createElement("textarea");
+          caption.setAttribute('name', 'caption');
+          caption.setAttribute('id', 'userInput');
+
+          let id = document.createElement('input');
+          id.setAttribute('name', 'imageId');
+          id.setAttribute('value', image.id);
+          id.setAttribute('class', 'hidden');
+
+          let submit = document.createElement('input');
+          submit.type = 'submit';
+          submit.value = 'Comment';
+
+          userForm.appendChild(caption);
+          userForm.appendChild(id);
+          userForm.appendChild(submit);
+          imageDiv.appendChild(userForm);
+
+          fetch('/userCaptions').then((response) => {
+            return response.json();
+          }).then((userCaptions) => {
+            userCaptions.forEach((userCaption) => {
+              if (userCaption.imageId === image.id) {
+                const userDiv = buildUserDiv(userCaption);
+                imageDiv.appendChild(userDiv);
+              }
+            });
+          });
           imagesContainer.appendChild(imageDiv);
         });
       });
@@ -97,9 +85,19 @@ function buildImageDiv(image) {
   return messageDiv;
 }
 
+function buildUserDiv(userCaption) {
+  const headerDiv = document.createElement('div')
+  headerDiv.classList.add('user-header');
+  headerDiv.appendChild(document.createTextNode(userCaption.user));
 
-// Fetch data and populate the UI of the page.
-function buildUI() {
-  fetchMessages();
-  fetchImages();
+  const bodyDiv = document.createElement('div');
+  bodyDiv.classList.add('user-body');
+  bodyDiv.innerHTML = userCaption.text;
+
+  const userDiv = document.createElement('div');
+  userDiv.classList.add('user-div');
+  userDiv.append(headerDiv);
+  userDiv.append(bodyDiv);
+
+  return userDiv;
 }
