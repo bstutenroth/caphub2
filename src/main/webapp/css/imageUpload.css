@@ -1,6 +1,73 @@
+@import "https://fonts.googleapis.com/css?family=Amatic+SC ";
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Six+Caps');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap');
 /* Form is hidden by default. */
 .hidden {
   display: none;
+}
+
+.backgroundImage {
+  background-image: url("instagram-hex-colors-gradient-background.png");
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-attachment: fixed;
+}
+div#header {
+  background-color: rgba(255,255,255, 0.7);
+  height: 75px;
+  padding: 10px;
+  border-bottom: 2px solid black;
+  margin: 10px;
+}
+
+h1#title_name{
+  font-size: 250%;
+  font-family: Montserrat;
+  font-weight: bold;
+  text-align: center;
+  display:inline;
+}
+
+#logoPic{
+  width: 80px;
+  height: 80px;
+  left:18%;
+  top:1%;
+  position: relative;
+}
+
+#header a{
+  border:1px;
+  border-style:solid;
+  text-align:center;
+  padding-left:1%;
+  padding-right:1%;
+  color: black;
+  text-decoration: none;
+  font-family: Open Sans Condensed;
+  margin-left: 10%;
+}
+
+#navigation{
+  position: absolute;
+  font-size:150%;
+  font-family: Amatic SC;
+  display: inline-block;
+  font-weight:bold;
+  left:70%;
+  top:0%;
+
+}
+
+#formDiv {
+  align-items: center;
+  border: 1px solid lightgrey;
+  margin: 80px auto;
+  width: 50%;
+  text-align: center;
+  background: white;
+
 }
 
 #controls {
@@ -14,12 +81,62 @@
   left: 0px;
   width: 99%;
 }
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
 
 #locationField {
   height: 20px;
   margin-bottom: 2px;
   position: relative;
-  width: 480px;
+  width: 80%;
+  margin-left: 10%;
+}
+
+textarea {
+  width: 80%;
+  padding: 5px 7px;
+  height: 100px;
+  box-sizing: border-box;
+  resize: none;
+
+}
+
+#submit {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.uploadImage {
+  position: relative;
+  width: 200px;
+  margin: 10px;
 }
 
 .message-div {
@@ -48,16 +165,4 @@
 
 .image-body {
   margin: 5px;
-}
-
-.user-div {
-  
-}
-
-.user-header {
-
-}
-
-.user-body {
-
 }
