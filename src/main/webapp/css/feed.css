@@ -67,9 +67,15 @@ p{
 }
 .message-div{
   width: 100%;
-  height: 150%;
+  height: 180%;
   object-fit: cover;
   
+}
+textarea{
+  margin-left: 24px;
+}
+button{
+  margin-left: 24px;
 }
 #images-container{
   display: grid;

@@ -6,7 +6,46 @@
 .hidden {
   display: none;
 }
+#title_name{
+  font-size: 250%;
+  font-family: Montserrat;
+  font-weight: bold;
+  width:100%;
+  height:auto;
+  left: 44%;
+  top:3%;
+  position:absolute;
+}
+#logoPic{
+  width: 80px;
+  height: 80px;
+  left:18%;
+  top:.5%;
+  position: absolute;
+}
+a{
+  border:1px;
+  border-style:solid;
+  text-align:center;
+  padding-left:1%;
+  padding-right:1%;
+  color: black;
+  text-decoration: none;
+  font-family: Open Sans Condensed;
+  margin-left: 10%;
+}
+#navigation{
+  position: absolute;
+  font-size:150%;
+  font-family: Amatic SC;
+  font-weight:bold;
+  left:70%;
+  top:0%;
 
+}
+#line{
+  margin-top: 6%;
+}
 .backgroundImage {
   background-image: url("instagram-hex-colors-gradient-background.png");
   background-repeat: no-repeat;
@@ -19,45 +58,6 @@ div#header {
   padding: 10px;
   border-bottom: 2px solid black;
   margin: 10px;
-}
-
-h1#title_name{
-  font-size: 250%;
-  font-family: Montserrat;
-  font-weight: bold;
-  text-align: center;
-  display:inline;
-}
-
-#logoPic{
-  width: 80px;
-  height: 80px;
-  left:18%;
-  top:1%;
-  position: relative;
-}
-
-#header a{
-  border:1px;
-  border-style:solid;
-  text-align:center;
-  padding-left:1%;
-  padding-right:1%;
-  color: black;
-  text-decoration: none;
-  font-family: Open Sans Condensed;
-  margin-left: 10%;
-}
-
-#navigation{
-  position: absolute;
-  font-size:150%;
-  font-family: Amatic SC;
-  display: inline-block;
-  font-weight:bold;
-  left:70%;
-  top:0%;
-
 }
 
 #formDiv {
