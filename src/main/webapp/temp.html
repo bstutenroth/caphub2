@@ -5,17 +5,36 @@
     <title>Blobstore Fetch Example</title>
     <link rel = "stylesheet" href="/css/imageUpload.css">
     <script src="/js/imageUpload.js"></script>
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEr8IFDb0oorKv9HmcL-XDPu62EAa8kRY&libraries=places&callback=initAutocomplete"
         async defer></script>
   </head>
-  <body onload="buildUI()">
+  <body onload="buildUI()" class='backgroundImage'>
+
+    <div id="content">
+      <img id="logoPic" src="mainLogo.png">
+      <div id="title_name">Cap Hub</div>
+      <div id = "line"><hr></div>
+      <ul id = "navigation">
+      <a href="/">Home</a>
+      <a href="/feed.html">Feed</a>
+      </ul>
+    </div>
+
+    <div id = 'formDiv'>
     <h1>Upload Your Image to Cap Hub! </h1>
     <p>Choose and upload an image, describe what the image is about,
       and click submit!</p>
 
     <form id="my-form" class="hidden" method="POST" enctype="multipart/form-data">
       <p>Upload your image to Cap Hub:</p>
-      <input type="file" name="image">
+      <div class="upload-btn-wrapper">
+        <button class="btn">Upload a file</button>
+        <input type="file" name="image" onchange="readURL(this)"/>
+          <br><br>
+          <img id="blah" src="#" alt="your image" class="hidden" />
+      </div>
       <br/><br/>
       <p>Type image description:</p>
       <textarea name="message"></textarea>
@@ -28,7 +47,8 @@
            type="text">
       </div>
       <br/>
-      <button>Submit</button>
+      <button id='submit'>Submit</button>
     </form>
+  </div>
   </body>
 </html>

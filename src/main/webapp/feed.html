@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Images Feed</title>
-    <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/user-page.css">
     <link rel = "stylesheet" href="/css/imageUpload.css">
+    <link rel = "stylesheet" href="/css/feed.css">
     <script src="js/feed.js"></script>
   </head>
   <body onload="fetchImages()">
     <div id="content">
-      <h1>Image Feed</h1>
-      <hr />
+      <img id="logoPic" src="mainLogo.png">
+      <div id="title_name">Cap Hub</div>
+      <div id = "line"><hr></div>
       <div id="images-container">Loading...</div>
+      <ul id = "navigation">
+      <a href="/">Home</a>
+      <a href="/temp.html">Upload</a>
+      </ul>
     </div>
   </body>
 </html>
