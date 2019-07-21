@@ -14,7 +14,7 @@ function fetchImages() {
         }
         images.forEach((image) => {
           const imageDiv = buildImageDiv(image);
-          let userForm = document.createElement("form");
+          /*let userForm = document.createElement("form");
           userForm.setAttribute('method', 'POST');
           userForm.setAttribute('action', '/userCaptions');
           userForm.setAttribute('id', 'userCommentForm');
@@ -30,12 +30,12 @@ function fetchImages() {
 
           let submit = document.createElement('input');
           submit.type = 'submit';
-          submit.value = 'Comment';
+          submit.value = 'Comment';*/
 
-          userForm.appendChild(caption);
-          userForm.appendChild(id);
-          userForm.appendChild(submit);
-          imageDiv.appendChild(userForm);
+          //userForm.appendChild(caption);
+          //userForm.appendChild(id);
+          //userForm.appendChild(submit);
+          //imageDiv.appendChild(userForm);
 
           fetch('/userCaptions').then((response) => {
             return response.json();
@@ -77,14 +77,15 @@ function buildImageDiv(image) {
 
   const messageDiv = document.createElement('div');
   messageDiv.classList.add('message-div');
-  messageDiv.appendChild(headerDiv);
-  messageDiv.appendChild(bodyDiv);
-  messageDiv.appendChild(locationDiv);
+  //messageDiv.appendChild(headerDiv);
+  //messageDiv.appendChild(bodyDiv);
+  //messageDiv.appendChild(locationDiv);
   messageDiv.appendChild(imageDiv);
 
   return messageDiv;
 }
 
+/*
 function buildUserDiv(userCaption) {
   const headerDiv = document.createElement('div')
   headerDiv.classList.add('user-header');
@@ -101,3 +102,4 @@ function buildUserDiv(userCaption) {
 
   return userDiv;
 }
+*/
