@@ -46,15 +46,14 @@ import org.jsoup.safety.Whitelist;
    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
    response.setContentType("application/json");
 
-   String image = request.getParameter("image");
-
-   if (image == null || image.equals("")) {
+   String id = request.getParameter("id");
+   if (id == null || id.equals("")) {
      // Request is invalid, return empty array
      response.getWriter().println("[]");
      return;
    }
 
-   List<ImageUrl> images = datastore.getImage(image);
+   List<ImageUrl> images = datastore.getImage(id);
    Gson gson = new Gson();
    String json = gson.toJson(images);
 

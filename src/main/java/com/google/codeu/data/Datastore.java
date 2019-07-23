@@ -137,6 +137,7 @@ public class Datastore {
 
   public void storeImageUrl (ImageUrl image) {
     Entity imageEntity = new Entity("ImageUrl", image.getId().toString());
+    imageEntity.setProperty("id", image.getId().toString());
     imageEntity.setProperty("user", image.getUser());
     imageEntity.setProperty("message", image.getText());
     imageEntity.setProperty("image", image.getUrl());
@@ -146,10 +147,10 @@ public class Datastore {
     datastore.put(imageEntity);
   }
 
-  public List<ImageUrl> getImage(String image) {
+  public List<ImageUrl> getImage(String id) {
     Query query =
         new Query("ImageUrl")
-            .setFilter(new Query.FilterPredicate("image", FilterOperator.EQUAL, image))
+            .setFilter(new Query.FilterPredicate("id", FilterOperator.EQUAL, id))
             .addSort("timestamp", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
 
@@ -169,7 +170,7 @@ public class Datastore {
 
     for (Entity entity: pq.asIterable()) {
       try {
-        String idString = entity.getKey().getName();
+        String idString = (String) entity.getProperty("id");
         UUID id = UUID.fromString(idString);
         String user = (String) entity.getProperty("user");
         String imageUrl = (String) entity.getProperty("image");
