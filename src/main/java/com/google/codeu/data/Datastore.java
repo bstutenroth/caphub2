@@ -146,10 +146,10 @@ public class Datastore {
     datastore.put(imageEntity);
   }
 
-  public List<ImageUrl> getImages(String user) {
+  public List<ImageUrl> getImage(String image) {
     Query query =
         new Query("ImageUrl")
-            .setFilter(new Query.FilterPredicate("user", FilterOperator.EQUAL, user))
+            .setFilter(new Query.FilterPredicate("image", FilterOperator.EQUAL, image))
             .addSort("timestamp", SortDirection.DESCENDING);
     PreparedQuery results = datastore.prepare(query);
 
