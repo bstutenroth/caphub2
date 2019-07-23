@@ -170,8 +170,9 @@ public class Datastore {
 
     for (Entity entity: pq.asIterable()) {
       try {
-        String idString = (String) entity.getProperty("id");
+        String idString = entity.getKey().getName();
         UUID id = UUID.fromString(idString);
+        String userId = entity.getKey().getName();
         String user = (String) entity.getProperty("user");
         String imageUrl = (String) entity.getProperty("image");
         String message = (String) entity.getProperty("message");
