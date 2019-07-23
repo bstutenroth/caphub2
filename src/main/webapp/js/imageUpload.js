@@ -40,12 +40,12 @@ function readURL(input) {
     let reader = new FileReader();
 
     reader.onload = function(e) {
-      $('#blah')
+      $('#upload')
         .attr('src', e.target.result)
         .removeClass('hidden')
         .addClass('uploadImage');
     };
-    
+
     reader.readAsDataURL(input.files[0]);
   }
 }
