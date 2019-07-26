@@ -29,7 +29,7 @@ public class UserCaptionsServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json");
-    
+
     List<UserCaption> captions = datastore.getAllCaptions();
     Gson gson = new Gson();
     String json = gson.toJson(captions);
@@ -55,7 +55,7 @@ public class UserCaptionsServlet extends HttpServlet {
     UserCaption caption = new UserCaption(imageId, user, message);
     datastore.storeUserCaption(caption);
 
-    response.sendRedirect("/feed.html");
+    response.sendRedirect("/comments.html?id=" + imageId);
   }
 
 }
