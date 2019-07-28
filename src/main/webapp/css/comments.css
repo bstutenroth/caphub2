@@ -64,25 +64,82 @@ li a {
   text-decoration:none;
 }
 
-.message-header {
+.commentForm {
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+}
 
+.form-control {
+  resize: none;
+  width: 100%;
+  height: 125px;
+  border-radius: 5px;
+  font-family: Georgia, serif;
+  font-size: 15px;
+}
+
+.input {
+  background-color: #D98880;
+  border-radius: 4px;
+  color: white;
+  padding: 16px 32px;
+  width: 80%;
+  margin-left: 10%;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.containerDiv {
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 2.5%;
+  margin-right: 10%;
+  padding-bottom: 2.5%;
+  border-bottom: 1px solid lightgrey;
+}
+.user-header {
+  border-bottom: 1px dashed grey;
+  font-family: Georgia, serif;
+}
+
+.user-body {
+  margin-top: 10px;
+  font-family: Georgia, serif;
+}
+
+.message-div {
+  border: thin solid black;
+  border-radius: 5px;
+  margin-top: 20px;
+  width: 50%;
+  margin-left: 25%;
+}
+
+/* Add a bottom border to the message header. */
+.message-header {
+  border-bottom: thin solid black;
+  padding: 5px;
+}
+
+/* Give the message body a margin so the text
+   isn't too close to the border. */
+.message-body {
+  border-bottom: thin solid black;
+  margin: 5px;
 }
 
 .location-body {
-
+  border-bottom: thin solid black;
+  margin: 5px;
 }
 
-.image-body {
 
-}
-
-.user-header {
-
-}
-.user-body {
-
-}
-
-.user-div {
-
+img{
+  width: 60%;
+  margin-left: 20%;
+  object-fit: cover;
+  padding: 5px;
 }

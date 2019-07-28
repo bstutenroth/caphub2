@@ -21,14 +21,17 @@ function fetchImages() {
         }
         images.forEach((image) => {
           const imageDiv = buildImageDiv(image);
+
           let userForm = document.createElement("form");
           userForm.setAttribute('method', 'POST');
           userForm.setAttribute('action', '/userCaptions');
           userForm.setAttribute('id', 'userCommentForm');
+          userForm.setAttribute('class', 'commentForm');
 
           let caption = document.createElement("textarea");
           caption.setAttribute('name', 'caption');
           caption.setAttribute('id', 'userInput');
+          caption.setAttribute('class', 'form-control');
 
           let id = document.createElement('input');
           id.setAttribute('name', 'imageId');
@@ -38,6 +41,7 @@ function fetchImages() {
           let submit = document.createElement('input');
           submit.type = 'submit';
           submit.value = 'Comment';
+          submit.setAttribute('class', 'input');
 
           userForm.appendChild(caption);
           userForm.appendChild(id);
@@ -103,7 +107,7 @@ function buildImageDiv(image) {
 
   const locationDiv = document.createElement('div');
   locationDiv.classList.add('location-body');
-  locationDiv.innerHTML = image.location;
+  locationDiv.appendChild(document.createTextNode(' Location: ' + image.location));
 
   const imageDiv = document.createElement("div");
   imageDiv.classList.add('image-body');
@@ -116,22 +120,32 @@ function buildImageDiv(image) {
   messageDiv.appendChild(locationDiv);
   messageDiv.appendChild(imageDiv);
 
-  return messageDiv;
+  const container = document.createElement('div');
+  container.classList.add('imgContainer');
+  container.appendChild(messageDiv);
+
+  return container;
 }
 
 function buildUserDiv(userCaption) {
   const headerDiv = document.createElement('div')
-  headerDiv.classList.add('user-header');
-  headerDiv.appendChild(document.createTextNode(userCaption.user));
+  headerDiv.classList.add("user-header");
+  headerDiv.appendChild(document.createTextNode(
+      userCaption.user + ' - ' + new Date(userCaption.timestamp)));
+
 
   const bodyDiv = document.createElement('div');
-  bodyDiv.classList.add('user-body');
+  bodyDiv.classList.add("user-body");
   bodyDiv.innerHTML = userCaption.text;
 
   const userDiv = document.createElement('div');
-  userDiv.classList.add('user-div');
+  userDiv.classList.add("user-div");
   userDiv.append(headerDiv);
   userDiv.append(bodyDiv);
 
-  return userDiv;
+  const containerDiv = document.createElement("div");
+  containerDiv.classList.add("containerDiv");
+  containerDiv.append(userDiv);
+
+  return containerDiv;
 }
