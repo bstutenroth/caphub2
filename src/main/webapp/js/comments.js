@@ -119,6 +119,7 @@ function buildImageDiv(image) {
   return messageDiv;
 }
 
+
 function buildUserDiv(userCaption) {
   const headerDiv = document.createElement('div')
   headerDiv.classList.add('user-header');
@@ -128,10 +129,19 @@ function buildUserDiv(userCaption) {
   bodyDiv.classList.add('user-body');
   bodyDiv.innerHTML = userCaption.text;
 
+  var button = document.createElement('button');
+  var counter=0;
+  button.innerHTML = 'like: '+counter;
+  button.onclick = function(){
+    counter+=1;
+    button.innerHTML = 'like: '+counter;
+  };
+
   const userDiv = document.createElement('div');
   userDiv.classList.add('user-div');
   userDiv.append(headerDiv);
   userDiv.append(bodyDiv);
+  userDiv.append(button);  
 
   return userDiv;
 }

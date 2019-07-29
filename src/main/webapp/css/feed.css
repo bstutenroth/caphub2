@@ -81,21 +81,23 @@ button{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 300px 300px 300px;
-  grid-row-gap: 15%;
+  grid-row-gap: 10%;
   grid-column-gap: 10px;
   margin-left: 10%;
   margin-right: 10%;
 }
 img{
   width: 100%;
-  max-height: 400px;
-  object-fit: cover;
+  height: auto;
+  vertical-align: middle;
 }
 
 .message-div {
   border: thin solid black;
   border-radius: 5px;
   margin-top: 20px;
+  height:115%;
+  width: 100%;
 }
 
 /* Add a bottom border to the message header. */
