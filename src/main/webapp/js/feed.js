@@ -14,7 +14,7 @@ function fetchImages() {
         }
         images.forEach((image) => {
           const imageDiv = buildImageDiv(image);
-<<<<<<< HEAD
+
           /*let userForm = document.createElement("form");
           userForm.setAttribute('method', 'POST');
           userForm.setAttribute('action', '/userCaptions');
@@ -48,8 +48,7 @@ function fetchImages() {
               }
             });
           });
-=======
->>>>>>> bdd01cd6de073aec74d249486a47559030ff8976
+
           imagesContainer.appendChild(imageDiv);
         });
       });
@@ -91,7 +90,7 @@ function buildImageDiv(image) {
   return messageDiv;
 }
 
-<<<<<<< HEAD
+
 /*
 function buildUserDiv(userCaption) {
   const headerDiv = document.createElement('div')
@@ -108,12 +107,11 @@ function buildUserDiv(userCaption) {
   userDiv.append(bodyDiv);
 
   return userDiv;
-=======
+
 function redirect(imageId) {
   if (imageId != "") {
     window.location.href= "http://localhost:8080/comments.html?id=" + imageId ;
     return false;
   } 
->>>>>>> bdd01cd6de073aec74d249486a47559030ff8976
 }
 */

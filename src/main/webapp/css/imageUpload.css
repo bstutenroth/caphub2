@@ -22,7 +22,6 @@
   width: 480px;
 }
 
-<<<<<<< HEAD
 .message-div {
   /*border: thin solid black;*/
   /*border-radius: 5px;*/
@@ -30,13 +29,11 @@
 
   float: left;
 }
-=======
 /* .message-div {
   border: thin solid black;
   border-radius: 5px;
   margin-top: 20px;
 } */
->>>>>>> bdd01cd6de073aec74d249486a47559030ff8976
 
 /* Add a bottom border to the message header. */
 /* .message-header {
@@ -58,7 +55,7 @@
 
 .image-body {
   margin: 5px;
-<<<<<<< HEAD
+
 }
 
 .user-div {
@@ -76,6 +73,4 @@
 img {
 
 }
-=======
 } */
->>>>>>> bdd01cd6de073aec74d249486a47559030ff8976

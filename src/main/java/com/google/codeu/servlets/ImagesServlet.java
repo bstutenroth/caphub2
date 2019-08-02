@@ -45,21 +45,6 @@ import java.util.List;
    }
 
    @Override
-<<<<<<< HEAD
-   public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws IOException {
-      response.getOutputStream().println("this will be my images page");
-
-
-      /*response.setContentType("application/json");
-
-      List<Message> messages = datastore.getAllMessages();
-      Gson gson = new Gson();
-      String json = gson.toJson(messages);
-
-      response.getOutputStream().println(json);*/
-      
-=======
    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
    response.setContentType("application/json");
 
@@ -68,7 +53,6 @@ import java.util.List;
      // Request is invalid, return empty array
      response.getWriter().println("[]");
      return;
->>>>>>> bdd01cd6de073aec74d249486a47559030ff8976
    }
 
    List<ImageUrl> images = datastore.getImage(id);
