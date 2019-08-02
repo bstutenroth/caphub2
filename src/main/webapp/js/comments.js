@@ -1,12 +1,19 @@
-/** Fetches messages and add them to the page. */
+const urlParams = new URLSearchParams(window.location.search);
+const parameterUsername = urlParams.get('id');
+
+// URL must include ?user=XYZ parameter. If not, redirect to homepage.
+if (!parameterUsername) {
+  window.location.replace('/');
+}
+
 function fetchImages() {
-  const url = '/my-form-handler';
+  const url = '/images?id=' + parameterUsername;
   fetch(url)
       .then((response) => {
         return response.json();
       })
       .then((images) => {
-        const imagesContainer = document.getElementById('images-container');
+        const imagesContainer = document.getElementById('comments-container');
         if (images.length == 0) {
           imagesContainer.innerHTML = '<p>This user has no posts yet.</p>';
         } else {
@@ -14,8 +21,7 @@ function fetchImages() {
         }
         images.forEach((image) => {
           const imageDiv = buildImageDiv(image);
-<<<<<<< HEAD
-          /*let userForm = document.createElement("form");
+          let userForm = document.createElement("form");
           userForm.setAttribute('method', 'POST');
           userForm.setAttribute('action', '/userCaptions');
           userForm.setAttribute('id', 'userCommentForm');
@@ -31,12 +37,12 @@ function fetchImages() {
 
           let submit = document.createElement('input');
           submit.type = 'submit';
-          submit.value = 'Comment';*/
+          submit.value = 'Comment';
 
-          //userForm.appendChild(caption);
-          //userForm.appendChild(id);
-          //userForm.appendChild(submit);
-          //imageDiv.appendChild(userForm);
+          userForm.appendChild(caption);
+          userForm.appendChild(id);
+          userForm.appendChild(submit);
+          imageDiv.appendChild(userForm);
 
           fetch('/userCaptions').then((response) => {
             return response.json();
@@ -48,11 +54,36 @@ function fetchImages() {
               }
             });
           });
-=======
->>>>>>> bdd01cd6de073aec74d249486a47559030ff8976
           imagesContainer.appendChild(imageDiv);
         });
       });
+}
+
+function buildForm(imageDiv) {
+  let userForm = document.createElement("form");
+  userForm.setAttribute('method', 'POST');
+  userForm.setAttribute('action', '/userCaptions');
+  userForm.setAttribute('id', 'userCommentForm');
+
+  let caption = document.createElement("textarea");
+  caption.setAttribute('name', 'caption');
+  caption.setAttribute('id', 'userInput');
+
+  let id = document.createElement('input');
+  id.setAttribute('name', 'imageId');
+  id.setAttribute('value', image.id);
+  id.setAttribute('class', 'hidden');
+
+  let submit = document.createElement('input');
+  submit.type = 'submit';
+  submit.value = 'Comment';
+
+  userForm.appendChild(caption);
+  userForm.appendChild(id);
+  userForm.appendChild(submit);
+  imageDiv.appendChild(userForm);
+
+  return imageDiv;
 }
 
 /**
@@ -76,23 +107,19 @@ function buildImageDiv(image) {
 
   const imageDiv = document.createElement("div");
   imageDiv.classList.add('image-body');
-  imageDiv.innerHTML = "<img src=\"" + image.url + "\">";
-  imageDiv.addEventListener("click", function(event) {
-    redirect(image.id);
-  });
+  imageDiv.innerHTML = "<img src=\"" + image.url + "\" />";
 
   const messageDiv = document.createElement('div');
   messageDiv.classList.add('message-div');
-  //messageDiv.appendChild(headerDiv);
-  //messageDiv.appendChild(bodyDiv);
-  //messageDiv.appendChild(locationDiv);
+  messageDiv.appendChild(headerDiv);
+  messageDiv.appendChild(bodyDiv);
+  messageDiv.appendChild(locationDiv);
   messageDiv.appendChild(imageDiv);
 
   return messageDiv;
 }
 
-<<<<<<< HEAD
-/*
+
 function buildUserDiv(userCaption) {
   const headerDiv = document.createElement('div')
   headerDiv.classList.add('user-header');
@@ -102,18 +129,19 @@ function buildUserDiv(userCaption) {
   bodyDiv.classList.add('user-body');
   bodyDiv.innerHTML = userCaption.text;
 
+  var button = document.createElement('button');
+  var counter=0;
+  button.innerHTML = 'like: '+counter;
+  button.onclick = function(){
+    counter+=1;
+    button.innerHTML = 'like: '+counter;
+  };
+
   const userDiv = document.createElement('div');
   userDiv.classList.add('user-div');
   userDiv.append(headerDiv);
   userDiv.append(bodyDiv);
+  userDiv.append(button);  
 
   return userDiv;
-=======
-function redirect(imageId) {
-  if (imageId != "") {
-    window.location.href= "http://localhost:8080/comments.html?id=" + imageId ;
-    return false;
-  } 
->>>>>>> bdd01cd6de073aec74d249486a47559030ff8976
 }
-*/

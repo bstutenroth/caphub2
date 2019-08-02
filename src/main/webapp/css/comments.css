@@ -1,0 +1,88 @@
+@import "https://fonts.googleapis.com/css?family=Amatic+SC ";
+@import url('https://fonts.googleapis.com/css?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Six+Caps');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap');
+/* Form is hidden by default. */
+.hidden {
+  display: none;
+}
+#title_name{
+  font-size: 250%;
+  font-family: Montserrat;
+  font-weight: bold;
+  width:100%;
+  height:auto;
+  left: 44%;
+  top:3%;
+  position:absolute;
+}
+#logoPic{
+  width: 80px;
+  height: 80px;
+  left:18%;
+  top:.5%;
+  position: absolute;
+}
+
+a{
+  border:1px;
+  border-style:solid;
+  color: black;
+}
+
+#navigation{
+  position: absolute;
+  font-size:150%;
+  font-family: Open Sans Condensed;
+  font-weight:bold;
+  left:70%;
+  top:0%;
+
+}
+#line{
+  margin-top: 6%;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  text-align: center;
+  padding: 5px 7px;
+  margin-left: 12px;
+  margin-top: 20px;
+  text-decoration:none;
+}
+
+.message-header {
+
+}
+
+.location-body {
+
+}
+
+.image-body {
+
+}
+
+.user-header {
+
+}
+.user-body {
+
+}
+
+.user-div {
+
+}
